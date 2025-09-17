@@ -1,92 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:toonfilx/screens/home_screen.dart';
 
 void main() {
   runApp(const App());
 }
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
-
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  bool showTitle = true;
-
-  void toggleTitle() {
-    setState(() {
-      showTitle = !showTitle;
-    });
-  }
-
-  List<int> numbers = [];
-
-  void onClicked() {
-    setState(() {
-      numbers.add(numbers.length);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        scaffoldBackgroundColor: const Color(0xffE7626C),
         textTheme: const TextTheme(
-          titleLarge: TextStyle(
-            color: Colors.red,
+          headlineLarge: TextStyle(
+            color: Color(0xff232B55),
           ),
         ),
+        cardColor: const Color(0xffF4EDDB),
       ),
-      home: Scaffold(
-        backgroundColor: const Color(0xFFF4EDDB),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              showTitle ? const MyLargeTitle() : const Text('nothing'),
-              IconButton(
-                  onPressed: toggleTitle,
-                  icon: const Icon(Icons.remove_red_eye))
-            ],
-          ),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
 
-class MyLargeTitle extends StatefulWidget {
-  const MyLargeTitle({
-    super.key,
-  });
-
-  @override
-  State<MyLargeTitle> createState() => _MyLargeTitleState();
-}
-
-class _MyLargeTitleState extends State<MyLargeTitle> {
-  @override
-  void initState() {
-    print('initState!');
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    print('dispose!');
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print('build!');
-    return Text(
-      'My Large Title',
-      style: TextStyle(
-        fontSize: 30,
-        color: Theme.of(context).textTheme.titleLarge?.color,
-      ),
-    );
-  }
-}
+// - **scaffoldBackgroundColor**: 전체 화면의 배경색을 지정합니다.
+// - **textTheme**: 텍스트 스타일을 설정하며, `headlineLarge` 스타일은 전체 앱에서 기본 제목 색상을 설정합니다.
+// - **cardColor**: 카드와 버튼 같은 컴포넌트의 배경색을 지정합니다.
